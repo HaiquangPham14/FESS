@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SS Mosaic Admin</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #1a2a6c, #2a5298);
+      color: white;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 2rem;
+      color: #ffd700;
+    }
+    .section {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+    input[type="file"], input[type="number"] {
+      margin: 10px 0;
+      padding: 5px;
+    }
+    button {
+      padding: 8px 12px;
+      background: #0bb7af;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      margin-right: 5px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: rgba(255,255,255,0.05);
+      margin-top: 10px;
+    }
+    th, td {
+      padding: 10px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    th {
+      background: rgba(0,0,0,0.3);
+    }
+    img.thumb {
+      height: 60px;
+      border-radius: 5px;
+    }
+    .pagination {
+      margin-top: 10px;
+      text-align: center;
+    }
+    .pagination button {
+      margin: 0 2px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>SS Mosaic Admin Panel</h1>
+  </header>
+
+  <section class="section">
+    <h3>Upload Image</h3>
+    <input type="file" id="uploadFile" />
+    <button onclick="uploadImage()">Upload</button>
+  </section>
+
+  <section class="section">
+    <h3>Update Image</h3>
+    <input type="file" id="updateFile" />
+    <input type="number" id="updatePos" placeholder="Position" />
+    <button onclick="updateImage()">Update</button>
+  </section>
+
+  <section class="section">
+    <h3>Pending Images</h3>
+    <div id="pendingTableContainer"></div>
+    <div class="pagination" id="pendingPagination"></div>
+  </section>
+
+  <section class="section">
+    <h3>Approved Images</h3>
+    <div id="approvedTableContainer"></div>
+    <div class="pagination" id="approvedPagination"></div>
+  </section>
+
+  <script>
+    const apiBase = 'https://upimgss.azurewebsites.net/api/SSImage';
+    let pendingPage = 1;
+    let approvedPage = 1;
+    const pageSize = 10;
+
+    async function uploadImage() {
+      const file = document.getElementById('uploadFile').files[0];
+      if (!file) return alert('Select a file');
+      const formData = new FormData();
+      formData.append('image', file);
+      await fetch(`${apiBase}/upload`, { method: 'POST', body: formData });
+      loadImages();
+    }
+
+    async function updateImage() {
+      const file = document.getElementById('updateFile').files[0];
+      const pos = document.getElementById('updatePos').value;
+      if (!file || !pos) return alert('Provide image and position');
+      const formData = new FormData();
+      formData.append('image', file);
+      await fetch(`${apiBase}/${pos}`, { method: 'PUT', body: formData });
+      loadImages();
+    }
+
+    async function approveImage(id) {
+      await fetch(`${apiBase}/approve/${id}`, { method: 'PUT' });
+      loadImages();
+    }
+
+    async function deleteImage(id) {
+      if (!confirm('Delete this image?')) return;
+      await fetch(`${apiBase}/${id}`, { method: 'DELETE' });
+      loadImages();
+    }
+
+    async function loadImages() {
+      const [pendingRes, approvedRes] = await Promise.all([
+        fetch(`${apiBase}/pending?page=${pendingPage}&pageSize=${pageSize}`),
+        fetch(`${apiBase}/approved?page=${approvedPage}&pageSize=${pageSize}`)
+      ]);
+
+      const pendingData = await pendingRes.json();
+      const approvedData = await approvedRes.json();
+
+      renderTable('pendingTableContainer', 'pendingPagination', pendingData, true);
+      renderTable('approvedTableContainer', 'approvedPagination', approvedData, false);
+    }
+
+    function renderTable(containerId, paginationId, data, isPending) {
+      const container = document.getElementById(containerId);
+      const pagination = document.getElementById(paginationId);
+      container.innerHTML = '';
+      pagination.innerHTML = '';
+
+      const table = document.createElement('table');
+      table.innerHTML = `
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Image</th>
+            <th>Position</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${data.data.map(img => `
+            <tr>
+              <td>${img.id}</td>
+              <td><img class="thumb" src="${img.imgUrl}" /></td>
+              <td>${img.position}</td>
+              <td>
+                ${isPending ? `<button onclick="approveImage(${img.id})">Approve</button>` : ''}
+                <button onclick="deleteImage(${img.id})">Delete</button>
+              </td>
+            </tr>`).join('')}
+        </tbody>
+      `;
+      container.appendChild(table);
+
+      for (let i = 1; i <= data.totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.onclick = () => {
+          if (isPending) pendingPage = i;
+          else approvedPage = i;
+          loadImages();
+        }
+        pagination.appendChild(btn);
+      }
+    }
+
+    loadImages();
+  </script>
+</body>
+</html>
