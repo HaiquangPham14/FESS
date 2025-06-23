@@ -173,7 +173,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: fill;
             z-index: 1;
         }
 
@@ -220,7 +220,6 @@
             z-index: 2;
             transition: opacity 0.3s;
         }
-
 
         .zoom-level {
             position: absolute;
@@ -351,6 +350,13 @@
             animation: pulse 1.5s infinite;
         }
 
+        .upload-instructions {
+            text-align: center;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
         @keyframes pulse {
             0% {
                 opacity: 0.6;
@@ -365,49 +371,219 @@
             }
         }
 
+        @media (max-width: 1024px) {
+            .container {
+                padding: 0 2vw;
+                max-width: 100vw;
+            }
+            .mosaic-container {
+                min-height: 180px;
+                height: 45vw;
+                max-height: 50vw;
+                border-radius: 8px;
+                margin-top: 8px;
+            }
+            .progress-container,
+            .upload-section {
+                max-width: 99vw;
+                margin-left: auto;
+                margin-right: auto;
+                border-radius: 8px;
+                padding: 10px 4vw;
+            }
+        }
+
+        @media (max-width: 900px) and (orientation: landscape) {
+            html, body {
+                width: 100vw;
+                min-width: 0;
+                max-width: 100vw;
+                overflow-x: hidden !important;
+                overflow-y: auto;
+            }
+            .container {
+                max-width: 100vw;
+                width: 100vw;
+                min-width: 0;
+                padding: 0;
+                margin: 0;
+                border-radius: 0;
+            }
+            .mosaic-container {
+                width: 100vw;
+                min-width: 0;
+                max-width: 100vw;
+                height: auto;
+                min-height: 120px;
+                max-height: none;
+                border-radius: 0;
+                margin: 0 auto 12px auto;
+                box-shadow: none;
+            }
+            .mosaic-wrapper {
+                width: 100vw;
+                min-width: 0;
+                max-width: 100vw;
+                height: auto;
+                min-height: 120px;
+                max-height: none;
+                position: relative;
+            }
+            .background-image {
+                width: 100vw !important;
+                min-width: 0;
+                max-width: 100vw;
+                height: auto !important;
+                min-height: 120px;
+                max-height: none;
+                position: relative;
+                left: 0;
+                top: 0;
+                object-fit: contain !important;
+                display: block;
+                margin: 0 auto;
+            }
+            .mosaic-grid {
+                width: 100vw;
+                min-width: 0;
+                max-width: 100vw;
+                height: auto;
+                min-height: 120px;
+                max-height: none;
+                left: 0;
+                top: 0;
+            }
+            .progress-container,
+            .upload-section {
+                max-width: 100vw;
+                width: 100vw;
+                border-radius: 0;
+                margin: 8px 0;
+                padding: 8px 2vw;
+            }
+        }
+
         @media (max-width: 768px) {
             .container {
+                padding: 4px;
+                min-height: 100vh;
+                height: auto;
+            }
+            header {
+                padding: 10px 0;
+                margin-bottom: 8px;
+            }
+            .mosaic-container {
+                min-height: 180px;
+                height: 45vw;
+                max-height: 45vh;
+                border-radius: 8px;
+                margin-top: 4px;
+            }
+            .progress-container,
+            .upload-section {
+                padding: 8px;
+                margin: 8px 0;
+                border-radius: 8px;
+                max-width: 99vw;
+            }
+            .progress-title,
+            .progress-percent {
+                font-size: 0.95rem;
+            }
+            .progress-bar {
+                height: 12px;
+            }
+            .progress-fill {
+                font-size: 0.7rem;
+                padding-right: 4px;
+            }
+            .upload-title {
+                font-size: 1rem;
+            }
+            .form-group label {
+                font-size: 0.85rem;
+            }
+            input, select {
+                font-size: 0.85rem;
+                padding: 8px 8px;
+            }
+            button {
+                font-size: 0.95rem;
                 padding: 10px;
             }
-
-            header {
-                padding: 15px 0;
+            .upload-instructions {
+                font-size: 0.8rem;
             }
+        }
 
-            h1 {
-                font-size: 1.5rem;
+        @media (max-width: 600px) {
+            .container {
+                padding: 0 1vw;
             }
-
-            .subtitle {
+            .mosaic-container {
+                min-height: 120px;
+                height: 40vw;
+                max-height: 45vw;
+                border-radius: 0;
+                margin-top: 4px;
+            }
+            .progress-container,
+            .upload-section {
+                border-radius: 0;
+                margin: 4px 0;
+                padding: 8px 2vw;
+            }
+            .progress-title,
+            .progress-percent {
                 font-size: 0.9rem;
             }
-
-            .progress-container {
-                padding: 12px;
+            .progress-bar {
+                height: 10px;
             }
-
-            .mosaic-grid {
-                grid-template-columns: repeat(12, 1fr);
-                grid-template-rows: repeat(42, 1fr);
+            .progress-fill {
+                font-size: 0.7rem;
+                padding-right: 2px;
             }
-
-            .realtime-info {
-                bottom: 10px;
-                left: 10px;
-                font-size: 0.75rem;
+            .upload-title {
+                font-size: 1rem;
+            }
+            .form-group label {
+                font-size: 0.85rem;
+            }
+            input, select {
+                font-size: 0.85rem;
+                padding: 7px 7px;
+            }
+            button {
+                font-size: 0.95rem;
+                padding: 10px;
             }
         }
 
         @media (max-width: 480px) {
-            .mosaic-grid {
-                grid-template-columns: repeat(10, 1fr);
-                grid-template-rows: repeat(10, 1fr);
+            .container {
+                padding: 0;
             }
-
+            .mosaic-container {
+                min-height: 80px;
+                height: 35vw;
+                max-height: 40vw;
+            }
+            .progress-container,
             .upload-section {
-                padding: 15px;
+                padding: 6px 1vw;
             }
-
+            .progress-title,
+            .progress-percent {
+                font-size: 0.8rem;
+            }
+            .progress-bar {
+                height: 8px;
+            }
+            .progress-fill {
+                font-size: 0.6rem;
+            }
         }
     </style>
 </head>
@@ -449,20 +625,15 @@
             <h2 class="upload-title">Thêm ảnh của bạn vào bức tranh</h2>
             <form class="upload-form" id="uploadForm">
                 <div class="form-group">
-                    <label for="position">Chọn vị trí:</label>
-                    <select id="position" required>
-                        <option value="">-- Chọn vị trí --</option>
-                        <!-- Positions will be populated by JavaScript -->
-                    </select>
-                </div>
-
-                <div class="form-group">
                     <label for="imageUpload">Chọn ảnh:</label>
                     <input type="file" id="imageUpload" accept="image/*" required>
                 </div>
 
                 <button type="submit" id="uploadButton">Thêm vào bức tranh</button>
             </form>
+            <div class="upload-instructions">
+                <i class="fas fa-info-circle"></i> Hệ thống sẽ tự động chọn vị trí phù hợp cho ảnh của bạn
+            </div>
         </div>
 
         <div class="notification" id="notification">Thông báo</div>
@@ -476,7 +647,6 @@
         const mosaicGrid = document.getElementById('mosaicGrid');
         const mosaicContainer = document.getElementById('mosaicContainer');
         const mosaicWrapper = document.getElementById('mosaicWrapper');
-        const positionSelect = document.getElementById('position');
         const imageUpload = document.getElementById('imageUpload');
         const uploadForm = document.getElementById('uploadForm');
         const uploadButton = document.getElementById('uploadButton');
@@ -484,9 +654,6 @@
         const progressFill = document.getElementById('progressFill');
         const notification = document.getElementById('notification');
         const currentDateTime = document.getElementById('currentDateTime');
-        const zoomInBtn = document.getElementById('zoomIn');
-        const zoomOutBtn = document.getElementById('zoomOut');
-        const resetZoomBtn = document.getElementById('resetZoom');
         const zoomLevel = document.getElementById('zoomLevel');
 
         // State
@@ -494,7 +661,6 @@
         const gridRows = 20;
         const gridSize = gridCols * gridRows; // 500 cells
         const approvedImages = {};
-        const availablePositions = new Set(Array.from({ length: gridSize }, (_, i) => i + 1));
         let scale = 1;
         let translateX = 0;
         let translateY = 0;
@@ -512,9 +678,6 @@
             // Create grid cells
             createMosaicGrid();
 
-            // Populate position dropdown
-            populatePositionDropdown();
-
             // Load approved images
             loadApprovedImages();
 
@@ -523,9 +686,6 @@
 
             // Setup zoom and panning
             setupZoomAndPan();
-
-            // Setup zoom controls
-            setupZoomControls();
 
             // Start realtime updates
             startRealtimeUpdates();
@@ -562,18 +722,6 @@
             }
         }
 
-        // Populate position dropdown with available positions
-        function populatePositionDropdown() {
-            positionSelect.innerHTML = '<option value="">-- Chọn vị trí --</option>';
-
-            availablePositions.forEach(position => {
-                const option = document.createElement('option');
-                option.value = position;
-                option.textContent = `Vị trí ${position}`;
-                positionSelect.appendChild(option);
-            });
-        }
-
         // Load approved images from API
         async function loadApprovedImages() {
             try {
@@ -589,12 +737,8 @@
                 // Process approved images
                 images.forEach(image => {
                     approvedImages[image.position] = image.imgUrl;
-                    availablePositions.delete(image.position);
                     updateGridCell(image.position, image.imgUrl);
                 });
-
-                // Update position dropdown
-                populatePositionDropdown();
 
             } catch (error) {
                 console.error('Lỗi khi tải ảnh đã duyệt:', error);
@@ -626,11 +770,10 @@
         async function handleImageUpload(event) {
             event.preventDefault();
 
-            const position = parseInt(positionSelect.value);
             const file = imageUpload.files[0];
 
-            if (!position || !file) {
-                showNotification('Vui lòng chọn vị trí và ảnh', 'error');
+            if (!file) {
+                showNotification('Vui lòng chọn ảnh', 'error');
                 return;
             }
 
@@ -644,15 +787,17 @@
 
                 // Send request to upload API
                 const response = await axios.post(
-                    `${API_BASE_URL}/upload?pos=${position}`,
+                    `${API_BASE_URL}/upload`,
                     formData,
                     { headers: { 'Content-Type': 'multipart/form-data' } }
                 );
 
+                const newImage = response.data;
+                const position = newImage.position;
+                const imageUrl = newImage.imgUrl;
+
                 // Update UI immediately
-                const imageUrl = URL.createObjectURL(file);
                 approvedImages[position] = imageUrl;
-                availablePositions.delete(position);
                 updateGridCell(position, imageUrl);
 
                 // Update progress
@@ -661,18 +806,23 @@
                 progressFill.textContent = `${progress}%`;
                 progressFill.style.width = `${progress}%`;
 
-                // Update position dropdown
-                populatePositionDropdown();
-
                 // Show success message
-                showNotification('Ảnh đã được thêm vào bức tranh ngay lập tức!', 'success');
+                showNotification(`Ảnh đã được thêm vào vị trí ${position}`, 'success');
 
                 // Reset form
                 uploadForm.reset();
 
             } catch (error) {
                 console.error('Lỗi khi tải ảnh lên:', error);
-                showNotification('Lỗi khi tải ảnh lên. Vui lòng thử lại.', 'error');
+                
+                let errorMessage = 'Lỗi khi tải ảnh lên. Vui lòng thử lại.';
+                if (error.response && typeof error.response.data === 'string') {
+                    errorMessage = error.response.data;
+                } else if (error.message) {
+                    errorMessage = error.message;
+                }
+                
+                showNotification(errorMessage, 'error');
             } finally {
                 uploadButton.disabled = false;
                 uploadButton.textContent = 'Thêm vào bức tranh';
@@ -692,7 +842,6 @@
                         // If we don't have this image or it's different, update it
                         if (!approvedImages[image.position] || approvedImages[image.position] !== image.imgUrl) {
                             approvedImages[image.position] = image.imgUrl;
-                            availablePositions.delete(image.position);
                             updateGridCell(image.position, image.imgUrl);
                         }
                     });
@@ -703,83 +852,10 @@
                     progressFill.textContent = `${progress}%`;
                     progressFill.style.width = `${progress}%`;
 
-                    // Update position dropdown
-                    populatePositionDropdown();
-
                 } catch (error) {
                     console.error('Lỗi khi cập nhật realtime:', error);
                 }
             }, 10000); // Update every 10 seconds
-        }
-
-        // Setup zoom controls
-        function setupZoomControls() {
-            zoomInBtn.addEventListener('click', () => zoomAtCenter(1.5));
-            zoomOutBtn.addEventListener('click', () => zoomAtCenter(0.75));
-            resetZoomBtn.addEventListener('click', resetZoom);
-        }
-
-        // Zoom at the center of the container
-        function zoomAtCenter(factor) {
-            const rect = mosaicContainer.getBoundingClientRect();
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            // Calculate the position as a percentage of the container
-            const xPercent = centerX / rect.width;
-            const yPercent = centerY / rect.height;
-
-            // Calculate the change in translation
-            const dx = (xPercent - 0.5) * rect.width * (1 - factor);
-            const dy = (yPercent - 0.5) * rect.height * (1 - factor);
-
-            // Update scale and translation
-            const newScale = Math.max(1, Math.min(8, scale * factor));
-            scale = newScale;
-            translateX += dx;
-            translateY += dy;
-
-            // Constrain translation to image boundaries
-            constrainTranslation();
-
-            // Update grid opacity based on zoom level
-            updateGridOpacity();
-
-            // Apply transformation
-            applyTransform();
-        }
-
-        // Constrain translation to image boundaries
-        function constrainTranslation() {
-            const containerRect = mosaicContainer.getBoundingClientRect();
-            const containerWidth = containerRect.width;
-            const containerHeight = containerRect.height;
-
-            // Calculate scaled dimensions
-            const scaledWidth = containerWidth * scale;
-            const scaledHeight = containerHeight * scale;
-
-            // Calculate maximum translation values
-            const maxTranslateX = Math.max(0, (containerWidth - scaledWidth) / 2);
-            const minTranslateX = Math.min(0, containerWidth - scaledWidth - maxTranslateX);
-
-            const maxTranslateY = Math.max(0, (containerHeight - scaledHeight) / 2);
-            const minTranslateY = Math.min(0, containerHeight - scaledHeight - maxTranslateY);
-
-            // Constrain translation values
-            translateX = Math.max(minTranslateX, Math.min(maxTranslateX, translateX));
-            translateY = Math.max(minTranslateY, Math.min(maxTranslateY, translateY));
-        }
-
-        // Update grid opacity based on scale
-        function updateGridOpacity() {
-            if (scale >= 4) {
-                mosaicGrid.style.opacity = 1;
-            } else {
-                // Tăng opacity dần từ 0.05 lên 1 khi scale từ 1 đến 4
-                const opacity = 0.5 + (scale - 1) * (0.95 / 3);
-                mosaicGrid.style.opacity = opacity;
-            }
         }
 
         // Setup zoom and panning
@@ -844,7 +920,44 @@
         // Apply transform to wrapper
         function applyTransform() {
             mosaicWrapper.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
-            zoomLevel.textContent = `${Math.round(scale * 100)}%`;
+            if (typeof zoomLevel !== 'undefined' && zoomLevel) {
+                zoomLevel.textContent = `${Math.round(scale * 100)}%`;
+            }
+        }
+
+        // Constrain translation to image boundaries
+        function constrainTranslation() {
+            const containerRect = mosaicContainer.getBoundingClientRect();
+            const containerWidth = containerRect.width;
+            const containerHeight = containerRect.height;
+
+            // Calculate scaled dimensions
+            const scaledWidth = containerWidth * scale;
+            const scaledHeight = containerHeight * scale;
+
+            // Calculate maximum translation values
+            const maxTranslateX = Math.max(0, (containerWidth - scaledWidth) / 2);
+            const minTranslateX = Math.min(0, containerWidth - scaledWidth - maxTranslateX);
+
+            const maxTranslateY = Math.max(0, (containerHeight - scaledHeight) / 2);
+            const minTranslateY = Math.min(0, containerHeight - scaledHeight - maxTranslateY);
+
+            // Constrain translation values
+            translateX = Math.max(minTranslateX, Math.min(maxTranslateX, translateX));
+            translateY = Math.max(minTranslateY, Math.min(maxTranslateY, translateY));
+        }
+
+        // Update grid opacity based on scale
+        function updateGridOpacity() {
+            if (scale <= 1) {
+                mosaicGrid.style.opacity = 0.05; // almost invisible when zoomed out
+            } else if (scale >= 4) {
+                mosaicGrid.style.opacity = 1;
+            } else {
+                // Increase opacity gradually from 0.05 to 1 as scale goes from 1 to 4
+                const opacity = 0.05 + (scale - 1) * (0.95 / 3);
+                mosaicGrid.style.opacity = opacity;
+            }
         }
 
         // Reset zoom
