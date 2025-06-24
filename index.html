@@ -376,6 +376,7 @@
                 padding: 0 2vw;
                 max-width: 100vw;
             }
+
             .mosaic-container {
                 min-height: 180px;
                 height: 45vw;
@@ -383,6 +384,7 @@
                 border-radius: 8px;
                 margin-top: 8px;
             }
+
             .progress-container,
             .upload-section {
                 max-width: 99vw;
@@ -394,13 +396,16 @@
         }
 
         @media (max-width: 900px) and (orientation: landscape) {
-            html, body {
+
+            html,
+            body {
                 width: 100vw;
                 min-width: 0;
                 max-width: 100vw;
                 overflow-x: hidden !important;
                 overflow-y: auto;
             }
+
             .container {
                 max-width: 100vw;
                 width: 100vw;
@@ -409,6 +414,7 @@
                 margin: 0;
                 border-radius: 0;
             }
+
             .mosaic-container {
                 width: 100vw;
                 min-width: 0;
@@ -420,6 +426,7 @@
                 margin: 0 auto 12px auto;
                 box-shadow: none;
             }
+
             .mosaic-wrapper {
                 width: 100vw;
                 min-width: 0;
@@ -429,6 +436,7 @@
                 max-height: none;
                 position: relative;
             }
+
             .background-image {
                 width: 100vw !important;
                 min-width: 0;
@@ -443,6 +451,7 @@
                 display: block;
                 margin: 0 auto;
             }
+
             .mosaic-grid {
                 width: 100vw;
                 min-width: 0;
@@ -453,6 +462,7 @@
                 left: 0;
                 top: 0;
             }
+
             .progress-container,
             .upload-section {
                 max-width: 100vw;
@@ -469,10 +479,12 @@
                 min-height: 100vh;
                 height: auto;
             }
+
             header {
                 padding: 10px 0;
                 margin-bottom: 8px;
             }
+
             .mosaic-container {
                 min-height: 180px;
                 height: 45vw;
@@ -480,6 +492,7 @@
                 border-radius: 8px;
                 margin-top: 4px;
             }
+
             .progress-container,
             .upload-section {
                 padding: 8px;
@@ -487,31 +500,40 @@
                 border-radius: 8px;
                 max-width: 99vw;
             }
+
             .progress-title,
             .progress-percent {
                 font-size: 0.95rem;
             }
+
             .progress-bar {
                 height: 12px;
             }
+
             .progress-fill {
                 font-size: 0.7rem;
                 padding-right: 4px;
             }
+
             .upload-title {
                 font-size: 1rem;
             }
+
             .form-group label {
                 font-size: 0.85rem;
             }
-            input, select {
+
+            input,
+            select {
                 font-size: 0.85rem;
                 padding: 8px 8px;
             }
+
             button {
                 font-size: 0.95rem;
                 padding: 10px;
             }
+
             .upload-instructions {
                 font-size: 0.8rem;
             }
@@ -521,6 +543,7 @@
             .container {
                 padding: 0 1vw;
             }
+
             .mosaic-container {
                 min-height: 120px;
                 height: 40vw;
@@ -528,33 +551,42 @@
                 border-radius: 0;
                 margin-top: 4px;
             }
+
             .progress-container,
             .upload-section {
                 border-radius: 0;
                 margin: 4px 0;
                 padding: 8px 2vw;
             }
+
             .progress-title,
             .progress-percent {
                 font-size: 0.9rem;
             }
+
             .progress-bar {
                 height: 10px;
             }
+
             .progress-fill {
                 font-size: 0.7rem;
                 padding-right: 2px;
             }
+
             .upload-title {
                 font-size: 1rem;
             }
+
             .form-group label {
                 font-size: 0.85rem;
             }
-            input, select {
+
+            input,
+            select {
                 font-size: 0.85rem;
                 padding: 7px 7px;
             }
+
             button {
                 font-size: 0.95rem;
                 padding: 10px;
@@ -565,22 +597,27 @@
             .container {
                 padding: 0;
             }
+
             .mosaic-container {
                 min-height: 80px;
                 height: 35vw;
                 max-height: 40vw;
             }
+
             .progress-container,
             .upload-section {
                 padding: 6px 1vw;
             }
+
             .progress-title,
             .progress-percent {
                 font-size: 0.8rem;
             }
+
             .progress-bar {
                 height: 8px;
             }
+
             .progress-fill {
                 font-size: 0.6rem;
             }
@@ -601,16 +638,16 @@
             <div class="datetime" id="currentDateTime"></div>
         </header>
 
-         <div class="mosaic-container" id="mosaicContainer">
+        <!-- <div class="mosaic-container" id="mosaicContainer">
             <div class="mosaic-wrapper" id="mosaicWrapper">
                 <img class="background-image" id="backgroundImage"
                     src="https://photo.znews.vn/w660/Uploaded/wyhktpu/2025_04_14/image003.jpg" alt="Khung ảnh mosaic">
                 <div class="mosaic-grid" id="mosaicGrid">
                 </div>
             </div>
-        </div> 
+        </div> -->
 
-        <div class="progress-container">
+        <!-- <div class="progress-container">
             <div class="progress-header">
                 <div class="progress-title">Tiến trình hoàn thành</div>
                 <div class="progress-percent" id="progressPercent">0%</div>
@@ -618,7 +655,7 @@
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill">0%</div>
             </div>
-        </div>
+        </div> -->
 
         <div class="upload-section">
             <h2 class="upload-title">Thêm ảnh của bạn vào bức tranh</h2>
@@ -631,7 +668,7 @@
                 <button type="submit" id="uploadButton">Thêm vào bức tranh</button>
             </form>
             <div class="upload-instructions">
-                <i class="fas fa-info-circle"></i> Hệ thống sẽ tự động chọn vị trí phù hợp cho ảnh của bạn
+                <i class="fas fa-info-circle"></i> Ban tổ chức sẽ kiểm duyệt ảnh
             </div>
         </div>
 
@@ -813,14 +850,14 @@
 
             } catch (error) {
                 console.error('Lỗi khi tải ảnh lên:', error);
-                
+
                 let errorMessage = 'Lỗi khi tải ảnh lên. Vui lòng thử lại.';
                 if (error.response && typeof error.response.data === 'string') {
                     errorMessage = error.response.data;
                 } else if (error.message) {
                     errorMessage = error.message;
                 }
-                
+
                 showNotification(errorMessage, 'error');
             } finally {
                 uploadButton.disabled = false;
